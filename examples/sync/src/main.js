@@ -2,7 +2,7 @@ import Memorize from '../../../index.js'
 
 class Test {
   @Memorize({})
-  fib (n) {
+  fib ({ n }) {
     if (n < 3) {
       return 1
     } else {
@@ -34,7 +34,7 @@ function fib (n) {
 
 let test = new Test()
 let start = Date.now()
-let num = 500
+let num = 3000
 
 for (let i = 0; i < num; i++) {
   fib(1000)
@@ -44,6 +44,6 @@ console.log(`Executing fact ${num} times needs ${Date.now() - start}ms`)
 start = Date.now()
 
 for (let i = 0; i < num; i++) {
-  test.fib(1000)
+  test.fib({n: 1000})
 }
 console.log(`Executing test.fact ${num} times needs ${Date.now() - start}ms`)

@@ -19,14 +19,15 @@ function Memorize (config) {
 	delete caches[arg]
       }
 
-      let cache = caches[arg]
+      let key = JSON.stringify(arg)
+      let cache = caches[key]
 
       // 若存在缓存并且没有过期，直接返回缓存的值
       if (cache && currentTime < cache.expired) {
 	return cache.value
       } else {
 	let value = fn.apply(this, [arg])
-	caches[arg] = { value, expired: Date.now() + time }
+	caches[key] = { value, expired: Date.now() + time }
 	return value
       }
     }
